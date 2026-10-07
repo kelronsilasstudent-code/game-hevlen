@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#07101f">
+<title>Game Hevlen — Build. Test. Improve.</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#050b16;color:#f6f8ff;line-height:1.5}button,input,textarea,select{font:inherit}button{border:0;border-radius:12px;padding:12px 16px;background:#6d7cff;color:#fff;font-weight:800;cursor:pointer;transition:.18s}button:hover{transform:translateY(-1px);filter:brightness(1.08)}button:disabled{opacity:.55;cursor:not-allowed;transform:none}button.secondary{background:#121e33;border:1px solid #2b3c5c}.wrap{width:min(1180px,92%);margin:auto}header{position:sticky;top:0;z-index:50;border-bottom:1px solid #1c2a42;background:#07101ee8;backdrop-filter:blur(16px)}.nav{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{font-size:22px;font-weight:950;letter-spacing:-.8px}.brand span{color:#8290ff}.nav-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.pill{font-size:12px;color:#aebbe0;border:1px solid #253653;border-radius:999px;padding:7px 10px}.hero{padding:100px 0 70px}.eyebrow{font-size:12px;letter-spacing:1.7px;text-transform:uppercase;font-weight:900;color:#9caaff}.hero h1{font-size:clamp(45px,7vw,82px);line-height:.98;letter-spacing:-4px;max-width:850px;margin:12px 0 22px}.hero p{font-size:20px;color:#aeb9d1;max-width:760px}.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}.section{padding:35px 0 80px}.section h2{font-size:32px;margin:0 0 10px;letter-spacing:-1px}.muted{color:#94a2bf}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:linear-gradient(145deg,#101b30,#0a1324);border:1px solid #22324f;border-radius:20px;padding:25px;box-shadow:0 20px 60px #0004}.card h3{margin:0 0 8px}.card p{color:#a9b5cc}.feature{min-height:210px}.modal{display:none;position:fixed;inset:0;background:#000c;z-index:100;align-items:center;justify-content:center;padding:20px}.modal.open{display:flex}.dialog{width:min(620px,100%);max-height:90vh;overflow:auto;background:#0b1528;border:1px solid #2a3c5e;border-radius:22px;padding:28px;box-shadow:0 30px 100px #0009}.dialog h2{margin:0 0 8px;font-size:28px}.close{float:right;background:#121e33;border:1px solid #2b3c5c;padding:9px 12px}.field{margin:13px 0}.field label{display:block;font-size:13px;font-weight:800;color:#b9c5dc;margin-bottom:7px}.field input,.field textarea,.field select{width:100%;background:#07101e;color:#fff;border:1px solid #2a3c5c;border-radius:11px;padding:13px;outline:0}.field input:focus,.field textarea:focus,.field select:focus{border-color:#7f8cff;box-shadow:0 0 0 3px #6d7cff20}.field textarea{min-height:110px;resize:vertical}.msg{min-height:22px;margin:10px 0;color:#aab8d5}.msg.error{color:#ff9c9c}.msg.success{color:#8ff0bc}.actions{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:18px}.statusbar{display:none;padding:10px 0;border-bottom:1px solid #1e2e49;background:#091426}.statusbar.show{display:block}.statusbar .wrap{display:flex;justify-content:space-between;gap:12px;align-items:center}.tester-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}.game-card{background:#0b1528;border:1px solid #243654;border-radius:18px;padding:20px}.game-card h3{margin:0 0 5px}.tag{display:inline-block;border:1px solid #304363;border-radius:999px;padding:5px 9px;font-size:11px;color:#aab8d5;text-transform:uppercase;font-weight:800}.game-card a{color:#9caaff}.feedback{margin-top:15px;border-top:1px solid #233450;padding-top:15px}.stars{display:flex;gap:5px}.stars button{background:#121e33;border:1px solid #2b3c5c;padding:8px 11px}.stars button.selected{background:#6d7cff}.admin{width:100%;height:100%;max-height:none!important;border-radius:0!important;padding:0!important;background:#050b16}.admin-head{padding:20px 4%;border-bottom:1px solid #20304b;background:#091427;display:flex;justify-content:space-between;align-items:center;gap:15px}.admin-title{font-size:24px;font-weight:950}.admin-sub{color:#8290aa;font-size:12px}.admin-body{padding:28px 4%;overflow:auto;height:calc(100% - 82px)}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}.stat{padding:18px;border:1px solid #243654;border-radius:16px;background:#0b1629}.stat strong{display:block;font-size:28px}.stat span{font-size:12px;color:#8f9db8}.tabs{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 22px}.tabs button.active{background:#6d7cff}.admin-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:15px}.admin-item{padding:19px;border:1px solid #243654;border-radius:16px;background:#0b1528}.admin-item h3{margin:0 0 7px}.admin-item p{color:#9eabc4;white-space:pre-wrap}.admin-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:15px}.approve{background:#147b58}.reject{background:#8d3d4b}.empty{padding:30px;border:1px dashed #2a3c5c;border-radius:16px;text-align:center;color:#8f9db8}.hidden{display:none!important}.footer{padding:35px 0 60px;color:#70809d;border-top:1px solid #18273f}@media(max-width:850px){.cards{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.hero{padding-top:70px}.hero h1{letter-spacing:-2.5px}}@media(max-width:520px){.nav{align-items:flex-start;padding:12px 0}.brand{font-size:19px}.nav-actions{justify-content:flex-end}.pill{display:none}.hero h1{font-size:45px}.dialog{padding:21px}.stats{grid-template-columns:1fr}}
+
+.admin-shell{position:relative;width:100%;height:100%;display:flex;flex-direction:column;overflow:hidden;background:#07111f;color:#eef3f8;font-family:Arial,Helvetica,sans-serif}.admin-shell:before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#ffffff03 1px,transparent 1px),linear-gradient(#ffffff03 1px,transparent 1px);background-size:40px 40px}.admin-top{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:14px 4%;background:#0b1b30;border-bottom:4px solid #9b2635;box-shadow:0 4px 18px #0008}.admin-brand{display:flex;align-items:center;gap:14px}.admin-logo{width:54px;height:54px;display:grid;place-items:center;border-radius:50%;background:#f5f6f7;color:#0b1b30;border:4px double #9b2635;font-size:25px;box-shadow:0 0 0 2px #d8dee5}.admin-title{font-size:21px;font-weight:900;letter-spacing:.8px;text-transform:uppercase}.admin-sub{color:#b8c5d3;font-size:10px;margin-top:3px;text-transform:uppercase;letter-spacing:1.6px}.admin-refresh{display:flex;gap:8px}.admin-refresh button{background:#17304e;border:1px solid #48627d;border-radius:4px;text-transform:uppercase;font-size:11px}.admin-body{position:relative;z-index:1;padding:24px 4% 50px;overflow:auto;height:auto;flex:1}.command-banner{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;padding:20px 24px;margin-bottom:18px;border:1px solid #52677d;border-left:6px solid #9b2635;border-radius:3px;background:#f1f3f5;color:#14263a;box-shadow:0 8px 25px #0005}.command-banner .live{color:#24613f;font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:1px}.command-banner .live:before{content:"●";margin-right:7px;color:#2d7a50}.command-banner strong{display:block;font-size:19px;text-transform:uppercase;letter-spacing:.3px}.command-banner span{display:block;color:#536273;font-size:12px;margin-top:3px}.system-readout{padding:11px 14px;border:1px solid #aeb9c4;background:#fff;font:700 10px/1.7 monospace;color:#24384d;text-align:right;letter-spacing:.8px}.admin-toolbar{display:flex;justify-content:space-between;align-items:flex-end;gap:15px;flex-wrap:wrap;margin-bottom:16px}.admin-toolbar h2{margin:0;font-size:30px;letter-spacing:-.5px;text-transform:uppercase}.admin-toolbar p{margin:5px 0 0;color:#9eacbb;font-size:12px}.admin-search{width:320px;max-width:100%;background:#0b1829;color:#fff;border:1px solid #435a72;border-radius:3px;padding:12px 14px;outline:none}.admin-nav{display:flex;gap:0;flex-wrap:wrap;margin-bottom:18px;background:#102238;border:1px solid #3d536b;border-radius:3px;padding:0}.admin-nav button{background:transparent;color:#c5d0db;border-radius:0;border-right:1px solid #3d536b;text-transform:uppercase;font-size:10px;letter-spacing:.7px}.admin-nav button.active{background:#9b2635;color:#fff}.admin-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}.admin-kpi{padding:17px;border:1px solid #4b6177;border-top:3px solid #9b2635;border-radius:3px;background:#102238;box-shadow:0 8px 20px #0004}.admin-kpi strong{font-size:30px;display:block}.admin-kpi span{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#aebdca}.admin-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:12px}.admin-card{padding:19px;border:1px solid #465d74;border-radius:3px;background:#f3f5f6;color:#16283b;box-shadow:0 8px 22px #0005}.admin-card:before{content:"OFFICIAL RECORD";display:block;color:#9b2635;font-size:8px;font-weight:900;letter-spacing:1.2px;margin-bottom:9px}.admin-card h3{margin:0 0 7px;font-size:17px;text-transform:uppercase}.admin-card p{color:#526170;margin:9px 0;white-space:pre-wrap}.admin-card .meta{font-size:10px;color:#687786;text-transform:uppercase;letter-spacing:.6px}.admin-status{border-radius:2px;padding:5px 8px;font-size:9px;font-weight:900;text-transform:uppercase;letter-spacing:.7px;white-space:nowrap}.admin-status.pending{color:#7a5714;border:1px solid #c7a75b;background:#fff5d8}.admin-status.approved{color:#205d3d;border:1px solid #579477;background:#e5f3ea}.admin-status.rejected{color:#8a2431;border:1px solid #b96570;background:#fae7e9}.admin-card-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:16px}.admin-card-actions button{padding:9px 12px;font-size:11px;border-radius:3px;text-transform:uppercase}.admin-empty{padding:50px;text-align:center;border:1px dashed #6c7f91;border-radius:3px;color:#9aa9b8;background:#0c1a2a}.admin-login{position:relative;max-width:470px;margin:10vh auto;padding:32px;border:1px solid #52677d;border-top:5px solid #9b2635;border-radius:3px;background:#f1f3f5;color:#14263a;box-shadow:0 25px 70px #0009}.admin-login h2{margin:0 0 7px;font-size:27px;text-transform:uppercase}.admin-error{color:#9b2635;margin-top:10px;min-height:22px}.admin-ok{color:#24613f;margin-top:10px;min-height:22px}@media(max-width:850px){.admin-kpis{grid-template-columns:repeat(2,1fr)}.command-banner{grid-template-columns:1fr}}@media(max-width:520px){.admin-kpis{grid-template-columns:1fr}.admin-title{font-size:16px}}
+.submission-hero{display:flex;gap:16px;align-items:center;padding:18px;margin:-4px 0 15px;border:1px solid #33496b;border-radius:16px;background:linear-gradient(135deg,#101f3c,#081326);box-shadow:inset 0 1px #ffffff10}.submission-seal{width:58px;height:58px;flex:none;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#7787ff,#4354d5);border:3px double #b5beff;color:#fff;font-weight:1000;letter-spacing:-1px;box-shadow:0 0 30px #6577ff45}.submission-kicker{font-size:9px;letter-spacing:1.6px;color:#8fa1c5;font-weight:900}.submission-title{font-size:22px;font-weight:1000;letter-spacing:-.5px;margin:2px 0}.submission-copy{font-size:12px;color:#9aaaca;line-height:1.45}.submission-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin:14px 0}.submission-steps span{padding:9px;text-align:center;border:1px solid #2c4163;background:#091426;color:#7083a6;border-radius:9px;font-size:9px;font-weight:900;letter-spacing:.8px}.submission-steps span.active{color:#fff;border-color:#7282ff;background:#283879}.upload-zone{position:relative;min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:7px;border:1px dashed #526da0;border-radius:16px;background:radial-gradient(circle at center,#1a2d57,#07101f);cursor:pointer;overflow:hidden;transition:.2s}.upload-zone:hover,.upload-zone.has-file{border-color:#8492ff;box-shadow:0 0 30px #6678ff20}.upload-zone input{position:absolute;inset:0;opacity:0;cursor:pointer}.upload-icon{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:#7181ff;color:#fff;font-size:28px;font-weight:900}.upload-zone strong{font-size:14px;letter-spacing:.8px}.upload-zone span{font-size:12px;color:#a7b5d0}.upload-zone small{font-size:10px;color:#7184a8}.submission-notice{display:flex;gap:10px;padding:11px 13px;margin-top:13px;border-left:3px solid #7081ff;background:#111f39;color:#9aa9c3;font-size:10px;line-height:1.4}.submission-notice b{color:#c7d0ff;white-space:nowrap}.submit-build{background:linear-gradient(135deg,#7484ff,#4a5bd9)!important;box-shadow:0 8px 25px #5669ff35;letter-spacing:.3px}
+
+.studio-dialog{width:min(1450px,100%);padding:0!important;overflow:hidden;background:#07101c!important;border:1px solid #314663!important}.studio-top{display:flex;justify-content:space-between;gap:18px;align-items:center;padding:16px 18px;border-bottom:1px solid #2b3e58;background:linear-gradient(180deg,#0e1a2c,#091321)}.studio-kicker{font-size:10px;letter-spacing:2px;color:#8ea4c5;font-weight:800}.studio-top h2{margin:3px 0 2px;font-size:21px}.studio-top #studioStatus{font-size:10px;color:#7f91aa}.studio-actions{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}.studio-actions button{min-height:36px}.studio-workspace{display:grid;grid-template-columns:245px minmax(430px,1fr) 245px;min-height:650px}.studio-left,.studio-right{background:#091522;padding:14px;border-right:1px solid #263a55}.studio-right{border-right:0;border-left:1px solid #263a55}.studio-section-title{font-size:10px;letter-spacing:1.6px;color:#6f85a5;font-weight:800;margin:5px 0 9px}.studio-field{display:grid;grid-template-columns:1fr;gap:5px;margin-bottom:11px}.studio-field label{font-size:10px;color:#8fa0ba}.studio-field input[type=text],.studio-field input:not([type]),.studio-field select,.studio-field input[type=number]{width:100%;box-sizing:border-box;background:#06101c;border:1px solid #2a405d;color:#eef3f8;border-radius:7px;padding:8px}.studio-field input[type=color]{width:100%;height:34px;border:1px solid #2a405d;border-radius:7px;background:#06101c}.studio-field input[type=range]{width:100%}.scene-tree{border:1px solid #243852;border-radius:9px;overflow:auto;max-height:190px;background:#06101c;margin-bottom:16px}.scene-node{width:100%;border:0;border-bottom:1px solid #17283d;background:transparent;color:#b9c8dd;text-align:left;padding:9px 10px;cursor:pointer;font-size:11px}.scene-node.active{background:#17345a;color:#fff}.asset-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}.asset-grid button{min-height:58px;background:#0d1b2d;border:1px solid #2a405d;border-radius:9px;color:#d8e1ef;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:17px}.asset-grid button span{font-size:10px;color:#91a2bc}.asset-grid button:hover{border-color:#617aa0;background:#12243b}.studio-tip{margin-top:14px;font-size:10px;line-height:1.5;color:#71839d}.studio-center{min-width:0;background:#050b13;display:flex;flex-direction:column}.studio-toolbar{display:flex;align-items:center;gap:6px;padding:9px;border-bottom:1px solid #263a55;background:#0a1523;flex-wrap:wrap}.tool{border:1px solid #2a405d;background:#0d1a2b;color:#aebed4;border-radius:7px;padding:7px 9px;cursor:pointer;font-size:11px}.tool.active{background:#284d78;color:#fff;border-color:#5078a7}.tool-sep{width:1px;height:22px;background:#2a405d}.studio-hint{font-size:10px;color:#647893;margin-left:auto}.studio-canvas-wrap{position:relative;flex:1;min-height:420px;display:grid;place-items:center;overflow:auto;padding:12px;background:#03070c}.studio-canvas-wrap canvas{width:min(100%,900px);height:auto;aspect-ratio:900/520;border:1px solid #344c6c;box-shadow:0 10px 35px #0008;cursor:crosshair;background:#07101f}.play-overlay{position:absolute;top:20px;right:20px;padding:7px 10px;border:1px solid #4d7eb0;border-radius:6px;background:#0b2037;color:#bfe0ff;font-size:10px;font-weight:800;letter-spacing:1px}.play-overlay span{font-weight:500;color:#8ba2bd;margin-left:7px}.studio-bottom{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 10px;border-top:1px solid #263a55;color:#70839e;font-size:10px}.studio-bottom b{color:#b8c8dc}.studio-bottom #studioMsg{color:#91a5c0}.inspector-head{display:flex;justify-content:space-between;gap:8px;margin-bottom:12px;font-size:10px;color:#8fa1bc}.inspector-head b{color:#d8e2ef;letter-spacing:1.4px}.inspector{border:1px solid #243852;border-radius:9px;background:#06101c;padding:10px;margin-bottom:16px}.inspector-empty{font-size:10px;line-height:1.5;color:#6f829d}.prop-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}.prop-grid .studio-field{margin:0}.prop-wide{grid-column:1/-1}.studio-projects{display:grid;gap:6px;max-height:180px;overflow:auto}.studio-project{display:flex;justify-content:space-between;gap:6px;align-items:center;border:1px solid #263a55;border-radius:7px;background:#0b1828;padding:8px;color:#aebed4;font-size:10px}.studio-project button{border:0;background:transparent;color:#dce7f4;cursor:pointer;font-size:10px}.studio-project small{display:block;color:#667a95;margin-top:2px}.studio-danger{color:#ff8f9d!important}.studio-play-field{padding:8px;border:1px solid #243852;border-radius:8px;background:#0a1726;font-size:10px;color:#91a2ba;margin-top:8px}.hidden{display:none!important}@media(max-width:1050px){.studio-workspace{grid-template-columns:200px minmax(380px,1fr)}.studio-right{grid-column:1/-1;border-left:0;border-top:1px solid #263a55;display:grid;grid-template-columns:1fr 1fr;gap:10px}.studio-right .studio-section-title{grid-column:auto}.studio-projects{max-height:120px}}@media(max-width:760px){.studio-workspace{display:block}.studio-left,.studio-right{border:0;border-bottom:1px solid #263a55}.studio-right{display:block}.studio-canvas-wrap{min-height:330px}.studio-hint{width:100%;margin-left:0}.studio-top{align-items:flex-start;flex-direction:column}.studio-actions{justify-content:flex-start}}
+</style>
+
+<style id="gh3d-style">
+.gh3d-dialog{width:min(1540px,100%);height:min(94vh,980px);max-height:94vh!important;padding:0!important;overflow:hidden!important;background:#202124!important;border:1px solid #3b3d42!important;border-radius:8px!important;color:#e9eaec}
+.gh3d-topbar{height:64px;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:8px 12px;border-bottom:1px solid #3b3d42;background:#28292d}
+.gh3d-brand{display:flex;align-items:center;gap:10px;min-width:0}.gh3d-mark{width:38px;height:38px;border-radius:7px;display:grid;place-items:center;background:#3a3c42;border:1px solid #53565d;font-size:11px;font-weight:900;letter-spacing:1px}.gh3d-kicker{font-size:9px;color:#8e949e;letter-spacing:1.6px;font-weight:800}.gh3d-topbar h2{margin:1px 0 0;font-size:17px;line-height:1.1}.gh3d-topbar #studioStatus{font-size:9px;color:#7e8792}
+.gh3d-actions{display:flex;gap:5px;align-items:center;flex-wrap:wrap}.gh3d-actions button{border-radius:5px;padding:7px 10px;min-height:32px;font-size:11px;background:#35373c}.gh3d-actions #studioPlay{background:#496f55}
+.gh3d-menubar{height:28px;display:flex;align-items:center;gap:18px;padding:0 12px;background:#242529;border-bottom:1px solid #393b40;font-size:9px;color:#a7abb2;letter-spacing:1px}.gh3d-spacer{flex:1}.gh3d-menubar #gh3dViewportReadout{letter-spacing:0;color:#777d87}
+.gh3d-workspace{display:grid;grid-template-columns:225px minmax(520px,1fr) 245px;height:calc(100% - 92px);min-height:0}
+.gh3d-left,.gh3d-right{background:#25262a;padding:10px;border-right:1px solid #3a3c41;overflow:auto}.gh3d-right{border-right:0;border-left:1px solid #3a3c41}
+.gh3d-center{min-width:0;min-height:0;background:#16171a;display:grid;grid-template-rows:auto minmax(300px,1fr) auto 115px}
+.gh3d-panel-title{font-size:9px;letter-spacing:1.4px;color:#8c929c;font-weight:800;margin:4px 2px 7px}.gh3d-project-name input,.gh3d-field input:not([type=color]),.gh3d-field select,.gh3d-inspector input:not([type=color]),.gh3d-inspector select{width:100%;box-sizing:border-box;background:#1d1f23;color:#e6e8eb;border:1px solid #44474d;border-radius:4px;padding:7px;font-size:11px;outline:0}.gh3d-field input[type=color],.gh3d-inspector input[type=color]{width:100%;height:30px;border:1px solid #44474d;border-radius:4px;background:#1d1f23;padding:2px}.gh3d-field input:focus,.gh3d-inspector input:focus,.gh3d-field select:focus,.gh3d-inspector select:focus{border-color:#6d91c4}
+.gh3d-tree{border:1px solid #3d4046;border-radius:4px;overflow:auto;max-height:185px;background:#1d1f22;margin-bottom:14px}.gh3d-tree button{width:100%;border:0;border-bottom:1px solid #303238;background:transparent;color:#bfc3c9;text-align:left;padding:7px 8px;font-size:10px;border-radius:0}.gh3d-tree button:hover{background:#303237}.gh3d-tree button.active{background:#3b4f68;color:#fff}
+.gh3d-assets{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:14px}.gh3d-assets button{min-height:51px;border:1px solid #41444a;border-radius:4px;background:#2b2d31;color:#d6d8dc;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:10px}.gh3d-assets button b{font-size:17px;font-weight:500}.gh3d-assets button span{font-size:9px;color:#9da2aa}.gh3d-assets button:hover{background:#35383d;border-color:#59606a}
+.gh3d-projects{display:grid;gap:5px}.gh3d-project{display:flex;justify-content:space-between;align-items:center;gap:5px;padding:7px;border:1px solid #3e4147;background:#1d1f23;border-radius:4px;font-size:9px}.gh3d-project small{display:block;color:#7e848d;margin-top:2px}.gh3d-project button{padding:4px 6px;font-size:9px;border-radius:3px;background:#363940}
+.gh3d-toolbar{display:flex;align-items:center;gap:5px;padding:6px;border-bottom:1px solid #36383d;background:#25262a;flex-wrap:wrap}.gh3d-tool,.gh3d-toolbar .secondary{border:1px solid #42454b;background:#303237;color:#bfc3c9;border-radius:4px;padding:6px 8px;font-size:10px}.gh3d-tool.active{background:#3f536d;color:#fff;border-color:#6b86a8}.gh3d-sep{height:22px;width:1px;background:#46484d}.gh3d-hint{font-size:9px;color:#757b84;margin-left:auto}
+.gh3d-viewport-wrap{position:relative;min-height:0;overflow:hidden;background:#8996a8}.gh3d-viewport-wrap canvas{display:block;width:100%;height:100%;cursor:default;outline:0}.gh3d-viewbadge{position:absolute;left:9px;top:8px;padding:4px 6px;background:#202327cc;border:1px solid #555960;border-radius:3px;font-size:8px;letter-spacing:1.1px;color:#d0d4d9;pointer-events:none}.gh3d-play-overlay{position:absolute;right:10px;top:8px;padding:5px 8px;background:#1f3a29e8;border:1px solid #5f8b6c;border-radius:3px;color:#d9f0de;font-size:9px;font-weight:800;pointer-events:none}.gh3d-play-overlay span{font-weight:500;color:#a9c4af;margin-left:5px}.gh3d-axis{position:absolute;left:12px;bottom:12px;display:flex;gap:3px;pointer-events:none}.gh3d-axis span{width:19px;height:19px;border-radius:3px;display:grid;place-items:center;background:#26282dcc;border:1px solid #565a61;font-size:9px;font-weight:900}.gh3d-axis .x{color:#e98b8b}.gh3d-axis .y{color:#91d59a}.gh3d-axis .z{color:#8baee9}
+.gh3d-bottom{height:32px;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 8px;border-top:1px solid #393b40;background:#242529;color:#858b95;font-size:9px}.gh3d-bottom b{color:#c5c9cf}.gh3d-bottom-actions{display:flex;gap:5px}.gh3d-bottom button{padding:4px 7px;border-radius:3px;font-size:9px}
+.gh3d-console{border-top:1px solid #3a3c41;background:#1d1e21;min-height:0}.gh3d-console-head{height:28px;display:flex;align-items:center;gap:8px;padding:0 8px;border-bottom:1px solid #33353a;color:#a9adb4;font-size:9px}.gh3d-console-head span{color:#6e747d}.gh3d-console-head button{margin-left:auto;padding:3px 6px;border-radius:3px;font-size:8px}.gh3d-console #consoleLog{height:86px;overflow:auto;padding:7px 8px;color:#87909b;font:10px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap}
+.gh3d-inspector-head{display:flex;justify-content:space-between;gap:8px;margin:3px 1px 9px;font-size:9px;color:#969ca5}.gh3d-inspector-head b{color:#d2d5da;letter-spacing:1.3px}.gh3d-inspector{border:1px solid #3e4147;border-radius:4px;background:#1d1f22;padding:8px;margin-bottom:13px}.gh3d-empty{font-size:9px;line-height:1.5;color:#737a84}.gh3d-field{display:grid;gap:4px;margin-bottom:8px}.gh3d-field label{font-size:9px;color:#9298a1}.gh3d-transform{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px}.gh3d-transform .gh3d-mini{min-width:0}.gh3d-transform .gh3d-mini label{display:block;font-size:8px;color:#757c85;margin-bottom:3px}.gh3d-transform .gh3d-mini input{width:100%;padding:6px 4px}.gh3d-wide{grid-column:1/-1}.gh3d-inspector .danger{margin-top:8px;width:100%;background:#4a2a2e;border-color:#704047}.gh3d-inspector .apply{margin-top:8px;width:100%;background:#384d66}
+@media(max-width:1120px){.gh3d-workspace{grid-template-columns:190px minmax(430px,1fr) 210px}.gh3d-hint{display:none}}
+@media(max-width:820px){.gh3d-dialog{height:96vh;max-height:96vh}.gh3d-workspace{grid-template-columns:1fr;height:calc(100% - 92px);overflow:auto}.gh3d-left,.gh3d-right{border:0;border-bottom:1px solid #3a3c41}.gh3d-center{min-height:650px}.gh3d-left,.gh3d-right{max-height:330px}.gh3d-topbar{align-items:flex-start}.gh3d-actions{justify-content:flex-end}.gh3d-menubar{display:none}}
+</style>
+
+</head>
+<body>
+<header><div class="wrap nav"><div class="brand">🎮 Game <span>Hevlen</span></div><div class="nav-actions"><span id="sessionPill" class="pill">Not signed in</span><button type="button" id="loginBtn" class="secondary">Sign in</button><button type="button" id="signupBtn">Create account</button><button id="practiceBtn" class="secondary">Practice Build</button><button id="adminBtn" class="secondary">Admin</button></div></div></header>
+<div id="statusbar" class="statusbar"><div class="wrap"><span id="statusText"></span><button id="logoutBtn" class="secondary">Sign out</button></div></div>
+<main>
+<section class="hero wrap"><div class="eyebrow">Game creation + real testing</div><h1>Build your game. Get it tested. Make it better.</h1><p>Game Hevlen is a public platform where creators submit games, testers play approved builds, and the team manages reviews from one control center.</p><div class="hero-actions"><button id="submitGameBtn">Submit a game</button><button id="testerBtn" class="secondary">Test games</button><button id="devBtn" class="secondary">Join as a developer</button></div></section>
+<section class="section wrap"><h2>One system. Every role.</h2><p class="muted">Everything is connected to the same Supabase backend instead of browser-only storage.</p><div class="cards"><div class="card feature"><h3>🎮 Creators</h3><p>Create an account, submit a playable build, and watch its review status.</p></div><div class="card feature"><h3>🧪 Testers</h3><p>Sign in, open approved games, rate them, and send feedback or bug reports.</p></div><div class="card feature"><h3>🛠 Developers</h3><p>Apply to join the team. Applications go directly into the staff review queue.</p></div></div></section>
+<section id="testerSection" class="section wrap hidden"><h2>Approved games</h2><p class="muted">Play approved builds and leave one review per game.</p><div id="testerGrid" class="tester-grid"></div></section>
+</main>
+<footer class="footer"><div class="wrap">Game Hevlen • Creator tools • Game testing • Staff review</div></footer>
+<div id="mainModal" class="modal"><div class="dialog"><button class="close" data-close="mainModal">Close</button><h2 id="modalTitle">Game Hevlen</h2><p id="modalIntro" class="muted"></p><form id="mainForm"></form><div id="mainMsg" class="msg" role="status" aria-live="polite"></div></div></div>
+<div id="practiceModal" class="modal"><div class="dialog gh3d-dialog">
+  <div class="gh3d-topbar">
+    <div class="gh3d-brand">
+      <div class="gh3d-mark">GH</div>
+      <div><div class="gh3d-kicker">GAME HEVLEN // PRACTICE BUILD</div><h2 id="studioTitle">My First 3D Game</h2><span id="studioStatus">EDIT MODE · LOCAL PROJECT</span></div>
+    </div>
+    <div class="gh3d-actions">
+      <button type="button" id="studioNew" class="secondary">＋ New</button>
+      <button type="button" id="studioUndo" class="secondary">↶</button>
+      <button type="button" id="studioRedo" class="secondary">↷</button>
+      <button type="button" id="studioSave" class="secondary">Save</button>
+      <button type="button" id="studioPlay">▶ Play</button>
+      <button type="button" class="close" data-close="practiceModal">Close</button>
+    </div>
+  </div>
+
+  <div class="gh3d-menubar">
+    <span>FILE</span><span>EDIT</span><span>VIEW</span><span>BUILD</span><span>TEST</span>
+    <span class="gh3d-spacer"></span><span id="gh3dViewportReadout">Perspective · 3D</span>
+  </div>
+
+  <div class="gh3d-workspace">
+    <aside class="gh3d-left">
+      <div class="gh3d-panel-title">PROJECT</div>
+      <div class="gh3d-project-name"><input id="pName" maxlength="80" value="My First 3D Game"></div>
+
+      <div class="gh3d-panel-title">SCENE</div>
+      <div class="gh3d-tree" id="sceneTree"></div>
+
+      <div class="gh3d-panel-title">CREATE</div>
+      <div class="gh3d-assets">
+        <button type="button" data-add="cube"><b>■</b><span>Cube</span></button>
+        <button type="button" data-add="sphere"><b>●</b><span>Sphere</span></button>
+        <button type="button" data-add="cylinder"><b>◉</b><span>Cylinder</span></button>
+        <button type="button" data-add="plane"><b>▱</b><span>Plane</span></button>
+        <button type="button" data-add="player"><b>♟</b><span>Player</span></button>
+        <button type="button" data-add="enemy"><b>◆</b><span>Enemy</span></button>
+        <button type="button" data-add="coin"><b>●</b><span>Coin</span></button>
+        <button type="button" data-add="light"><b>☼</b><span>Light</span></button>
+      </div>
+
+      <div class="gh3d-panel-title">MY FILES</div>
+      <div id="practiceProjects" class="gh3d-projects"></div>
+    </aside>
+
+    <section class="gh3d-center">
+      <div class="gh3d-toolbar">
+        <button type="button" class="gh3d-tool active" data-tool="select">↖ Select</button>
+        <button type="button" class="gh3d-tool" data-tool="move">✥ Move</button>
+        <button type="button" class="gh3d-tool" data-tool="rotate">⟳ Rotate</button>
+        <button type="button" class="gh3d-tool" data-tool="scale">⤢ Scale</button>
+        <span class="gh3d-sep"></span>
+        <button type="button" id="studioGrid" class="secondary">Grid</button>
+        <button type="button" id="studioResetView" class="secondary">Reset View</button>
+        <button type="button" id="studioFocus" class="secondary">Focus</button>
+        <span class="gh3d-hint">LMB select · drag orbit · wheel zoom · WASD play</span>
+      </div>
+
+      <div class="gh3d-viewport-wrap">
+        <canvas id="practiceCanvas" width="1280" height="720"></canvas>
+        <div id="playOverlay" class="gh3d-play-overlay hidden">PLAY MODE <span>ESC to stop</span></div>
+        <div class="gh3d-axis"><span class="x">X</span><span class="y">Y</span><span class="z">Z</span></div>
+        <div class="gh3d-viewbadge">3D VIEWPORT</div>
+      </div>
+
+      <div class="gh3d-bottom">
+        <div><b id="sceneCount">0 objects</b><span> · 3D Scene</span></div>
+        <div id="studioMsg" aria-live="polite">Ready to build in 3D.</div>
+        <div class="gh3d-bottom-actions"><button type="button" id="studioExport" class="secondary">Export HTML</button></div>
+      </div>
+
+      <div class="gh3d-console">
+        <div class="gh3d-console-head"><b>OUTPUT</b><span>Build console</span><button type="button" id="consoleClear" class="secondary">Clear</button></div>
+        <div id="consoleLog">[Game Hevlen] 3D practice studio initialized.</div>
+      </div>
+    </section>
+
+    <aside class="gh3d-right">
+      <div class="gh3d-inspector-head"><b>INSPECTOR</b><span id="selectionLabel">No selection</span></div>
+      <div id="inspector" class="gh3d-inspector"><div class="gh3d-empty">Select an object to edit its transform and material.</div></div>
+
+      <div class="gh3d-panel-title">WORLD</div>
+      <div class="gh3d-field"><label>Background</label><input id="worldBg" type="color" value="#8ea0b8"></div>
+      <div class="gh3d-field"><label>Grid size</label><input id="gridSize" type="range" min="1" max="8" step=".5" value="1"><span id="gridValue">1 m</span></div>
+      <div class="gh3d-field"><label>Camera</label><select id="cameraMode"><option value="perspective">Perspective</option><option value="top">Top</option><option value="front">Front</option><option value="side">Side</option></select></div>
+
+      <div class="gh3d-panel-title">SCENE SETTINGS</div>
+      <div class="gh3d-field"><label>Ambient light</label><input id="ambientLevel" type="range" min=".1" max="2" step=".1" value=".8"></div>
+      <div class="gh3d-field"><label>Sun intensity</label><input id="sunLevel" type="range" min="0" max="3" step=".1" value="1.4"></div>
+    </aside>
+  </div>
+</div></div><div id="adminModal" class="modal"><div class="dialog admin"><div id="adminBody" class="admin-body"></div></div></div>
+<script src="https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.min.js"></script>
+<script>
+const API="https://pvywmldqvqwouukdelit.supabase.co",KEY="sb_publishable_chMhV3QCCW4nZsl8Ni-tEw_IXmC5_S5",ADMIN_FN=API+"/functions/v1/admin-dashboard",DEV_FN=API+"/functions/v1/submit-developer-application",SESSION_KEY="game_hevlen_session_v2";
+let session=null,user=null,modalMode="",adminCode="",busy=false;
+const $=s=>document.querySelector(s);
+function esc(v){return String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[m]))}
+function openModal(title,intro,html,mode){modalMode=mode;$("#modalTitle").textContent=title;$("#modalIntro").textContent=intro;$("#mainForm").innerHTML=html;$("#mainMsg").textContent="";$("#mainMsg").className="msg";$("#mainModal").classList.add("open")}
+function closeModal(id){$("#"+id).classList.remove("open")}
+function message(text,type=""){const m=$("#mainMsg");m.textContent=text;m.className="msg"+(type?" "+type:"")}
+function saveSession(s){session=s||null;user=s?.user||null;if(s)localStorage.setItem(SESSION_KEY,JSON.stringify(s));else localStorage.removeItem(SESSION_KEY);renderSession()}
+function renderSession(){const signed=!!session?.access_token;$("#sessionPill").textContent=signed?(user?.email||"Signed in"):"Not signed in";$("#statusbar").classList.toggle("show",signed);$("#statusText").textContent=signed?"Signed in as "+(user?.email||"your account"):"";$("#loginBtn").textContent=signed?"Test games":"Sign in";$("#signupBtn").classList.toggle("hidden",signed)}
+function authHeaders(){if(!session?.access_token)throw new Error("Please sign in first.");return {"apikey":KEY,"Authorization":"Bearer "+session.access_token,"Content-Type":"application/json"}}
+async function request(url,opts={},timeout=15000){const c=new AbortController(),t=setTimeout(()=>c.abort(),timeout);try{const r=await fetch(url,{...opts,signal:c.signal});const text=await r.text();let data={};try{data=text?JSON.parse(text):{}}catch{data={raw:text}}if(!r.ok)throw new Error(data?.message||data?.error_description||data?.error||data?.raw||("Request failed ("+r.status+")"));return data}catch(e){if(e.name==="AbortError")throw new Error("The request timed out. Please try again.");throw e}finally{clearTimeout(t)}}
+async function auth(path,body){return request(API+"/auth/v1/"+path,{method:"POST",headers:{"apikey":KEY,"Content-Type":"application/json"},body:JSON.stringify(body)})}
+async function db(path,opts={}){return request(API+"/rest/v1/"+path,{...opts,headers:{...authHeaders(),...(opts.headers||{})}})}
+function requireUser(){if(!session?.access_token||!user?.id)throw new Error("Please create an account or sign in first.")}
+async function signUp(name,email,password){const cleanEmail=email.trim().toLowerCase();if(!cleanEmail)throw new Error("Enter an email address.");const data=await auth("signup",{email:cleanEmail,password,data:{full_name:name}});if(data.user&&data.session){saveSession(data.session);try{await db("profiles?id=eq."+encodeURIComponent(data.user.id),{method:"PATCH",body:JSON.stringify({full_name:name})})}catch(e){console.warn("Profile update:",e.message)}return true}if(data.user&&!data.session)throw new Error("An account with this email already exists or still needs confirmation.");throw new Error("Account could not be created.")}
+async function signIn(email,password){const data=await auth("token?grant_type=password",{email,password});if(!data.access_token)throw new Error("Sign-in did not return a session.");saveSession(data);return true}
+async function signOut(){try{if(session?.access_token)await request(API+"/auth/v1/logout",{method:"POST",headers:{"apikey":KEY,"Authorization":"Bearer "+session.access_token}})}catch{}saveSession(null);$("#testerSection").classList.add("hidden")}
+function signupForm(){openModal("Create your account","Use this account to submit games and test approved games.",'<div class="field"><label>Full name</label><input id="fName" maxlength="80" required></div><div class="field"><label>Email</label><input id="fEmail" type="email" maxlength="254" required></div><div class="field"><label>Password</label><input id="fPass" type="password" minlength="8" required><small class="muted">At least 8 characters.</small></div><div class="actions"><button type="submit">Create account</button></div><p class="muted">Already have an account? <button type="button" id="switchLogin" class="secondary">Sign in</button></p>',"signup");$("#switchLogin").onclick=loginForm}
+function loginForm(){openModal("Sign in","Welcome back to Game Hevlen.",'<div class="field"><label>Email</label><input id="fEmail" type="email" maxlength="254" required></div><div class="field"><label>Password</label><input id="fPass" type="password" required></div><div class="actions"><button type="submit">Sign in</button></div><p class="muted">New here? <button type="button" id="switchSignup" class="secondary">Create an account</button></p>',"login");$("#switchSignup").onclick=signupForm}
+function gameForm(){requireUser();openModal("Submit a game","<b>DEVELOPER INTAKE // BUILD SUBMISSION</b><br>Your build will be securely queued for staff review. No playable URL is required.",'<div class="submission-hero"><div class="submission-seal">GH</div><div><div class="submission-kicker">GAME HEVLEN // DEVELOPER PORTAL</div><div class="submission-title">NEW BUILD INTAKE</div><div class="submission-copy">Prepare your release candidate for review. Staff will inspect the build, description, genre, and submission metadata before approval.</div></div></div><div class="submission-steps"><span class="active">01 DETAILS</span><span>02 BUILD FILE</span><span>03 REVIEW</span></div><div class="field"><label>GAME TITLE</label><input id="gTitle" maxlength="120" placeholder="Enter your game title" required></div><div class="field"><label>PROJECT DESCRIPTION</label><textarea id="gDesc" maxlength="4000" placeholder="Tell reviewers what the game is, what to test, and what makes it unique." required></textarea></div><div class="field"><label>GENRE / CATEGORY</label><input id="gGenre" maxlength="80" placeholder="Action, RPG, Horror, Racing..."></div><div class="field"><label>GAME BUILD FILE</label><div class="upload-zone" id="gameUploadZone"><div class="upload-icon">↑</div><strong>DROP YOUR BUILD HERE</strong><span>or click to browse files</span><small>ZIP recommended · HTML/JS builds supported · Maximum 50 MB</small><input id="gFile" type="file" accept=".zip,.html,.htm,.js,.exe,.apk,.ipa,.unitypackage,.rar,.7z" required></div></div><div class="submission-notice"><b>SECURITY CHECK</b><span>Your file is submitted for moderation. Do not include passwords, secrets, or private credentials inside the build.</span></div><div class="actions"><button class="submit-build">SUBMIT BUILD FOR REVIEW →</button></div>',"game");const zone=$("#gameUploadZone"),file=$("#gFile");if(zone&&file){zone.onclick=()=>file.click();file.onchange=()=>{const f=file.files[0];if(f){zone.classList.add("has-file");zone.querySelector("strong").textContent=f.name;zone.querySelector("span").textContent=(f.size/1024/1024).toFixed(2)+" MB · READY FOR INTAKE"}}}}
+function developerForm(){openModal("Join as a developer","Send your skills to the Game Hevlen staff review queue.",'<div class="field"><label>Email</label><input id="dEmail" type="email" maxlength="254" required></div><div class="field"><label>Skills</label><textarea id="dSkills" maxlength="2000" placeholder="Unity, Unreal, JavaScript, C#, 3D art, level design..." required></textarea></div><div class="actions"><button>Send application</button></div>',"developer")}
+async function loadTesterGames(){if(!session?.access_token){openModal("Sign in to test","Tester access requires a free Game Hevlen account.",'<div class="actions"><button id="goLogin">Sign in</button><button type="button" id="goSignup" class="secondary">Create account</button></div>',"tester-login");$("#goLogin").onclick=loginForm;$("#goSignup").onclick=signupForm;return}try{const games=await db("games?select=id,title,description,genre,build_url,status,created_at&status=eq.approved&order=created_at.desc");renderTester(games);$("#testerSection").scrollIntoView({behavior:"smooth"})}catch(e){$("#testerSection").classList.remove("hidden");$("#testerGrid").innerHTML='<div class="empty">'+esc(e.message)+"</div>"}}
+function renderTester(games){$("#testerSection").classList.remove("hidden");const grid=$("#testerGrid");if(!games.length){grid.innerHTML='<div class="empty">No approved games are available yet.</div>';return}grid.innerHTML="";games.forEach(g=>{const el=document.createElement("article");el.className="game-card";el.innerHTML='<span class="tag">'+esc(g.genre||"Game")+'</span><h3>'+esc(g.title)+'</h3><p>'+esc(g.description)+'</p>'+(g.build_url?'<p><a href="'+esc(g.build_url)+'" target="_blank" rel="noopener">Open playable build ↗</a></p>':'<p class="muted">This submission has no playable link yet.</p>')+'<div class="feedback"><b>Leave feedback</b><div class="stars" data-game="'+esc(g.id)+'"><button type="button" data-rating="1">1</button><button type="button" data-rating="2">2</button><button type="button" data-rating="3">3</button><button type="button" data-rating="4">4</button><button type="button" data-rating="5">5</button></div><div class="field"><textarea class="fbText" placeholder="What worked well? What should improve?"></textarea></div><div class="field"><textarea class="bugText" placeholder="Bug report (optional)"></textarea></div><button type="button" class="sendFeedback">Send feedback</button><div class="msg fbMsg"></div></div>';grid.appendChild(el);el.querySelectorAll(".stars button").forEach(b=>b.onclick=()=>{el.querySelectorAll(".stars button").forEach(x=>x.classList.toggle("selected",Number(x.dataset.rating)<=Number(b.dataset.rating)));el.dataset.rating=b.dataset.rating});el.querySelector(".sendFeedback").onclick=async()=>{const rating=Number(el.dataset.rating||0),feedback=el.querySelector(".fbText").value.trim(),bug=el.querySelector(".bugText").value.trim(),m=el.querySelector(".fbMsg");if(!rating){m.textContent="Choose a rating first.";m.className="msg error";return}if(feedback.length<2){m.textContent="Add a little feedback before sending.";m.className="msg error";return}try{await db("test_feedback",{method:"POST",body:JSON.stringify({game_id:g.id,tester_id:user.id,rating,feedback,bug_report:bug||null})});m.textContent="Feedback sent.";m.className="msg success";el.querySelector(".sendFeedback").disabled=true}catch(e){m.textContent=e.message.toLowerCase().includes("duplicate")?"You already reviewed this game.":e.message;m.className="msg error"}}})}
+async function adminRequest(body,code){return request(ADMIN_FN,{method:"POST",headers:{"apikey":KEY,"Content-Type":"application/json","x-admin-code":code},body:JSON.stringify(body)},15000)}
+function adminGate(){
+  const body=$("#adminBody");
+  body.innerHTML='<div class="admin-shell"><div class="admin-top"><div class="admin-brand"><div class="admin-logo">🛡️</div><div><div class="admin-title">Game Hevlen Admin</div><div class="admin-sub">Staff Control Center</div></div></div><div class="admin-refresh"><button id="adminExit" class="secondary">Exit</button></div></div><div class="admin-body"><div class="admin-login"><h2>Staff authentication</h2><p class="muted">Enter the private administrator code.</p><div class="field"><label>Admin code</label><input id="adminCode" type="password" autocomplete="off" placeholder="Enter code"></div><div class="actions"><button id="adminEnter">Open Control Center</button></div><div id="adminMsg" class="admin-error"></div></div></div></div>';
+  $("#adminExit").onclick=()=>closeModal("adminModal");
+  $("#adminCode").onkeydown=e=>{if(e.key==="Enter")$("#adminEnter").click()};
+  $("#adminEnter").onclick=async()=>{
+    const code=$("#adminCode").value.trim(),m=$("#adminMsg"),b=$("#adminEnter");
+    if(!code){m.textContent="Enter the admin code.";return}
+    b.disabled=true;m.textContent="Connecting…";
+    try{const data=await adminRequest({action:"list"},code);adminCode=code;renderAdmin(data)}
+    catch(e){m.textContent=e.message||"Admin connection failed."}
+    finally{b.disabled=false}
+  };
+}
+function renderAdmin(data){
+  const games=data.games||[],apps=data.applications||[],feedback=data.feedback||[];
+  let tab="dashboard",query="";
+  const body=$("#adminBody");
+  const gameCard=g=>'<article class="admin-card"><div class="admin-card-head"><div><h3>'+esc(g.title||"Untitled game")+'</h3><div class="meta">'+esc(g.genre||"Unknown genre")+' · '+esc((g.id||"").slice(0,8))+'</div></div><span class="admin-status '+esc(g.status)+'">'+esc(g.status)+'</span></div><p>'+esc(g.description||"No description provided.")+'</p><div class="admin-card-actions">'+(g.build_url?'<a href="'+esc(g.build_url)+'" target="_blank" rel="noopener"><button type="button" class="secondary">▶ Test build</button></a>':"")+(g.status!=="approved"?'<button type="button" class="approve" data-action="game_status" data-id="'+esc(g.id)+'" data-status="approved">✓ Approve</button>':"")+(g.status!=="rejected"?'<button type="button" class="reject" data-action="game_status" data-id="'+esc(g.id)+'" data-status="rejected">✕ Reject</button>':"")+'</div></article>';
+  const appCard=a=>'<article class="admin-card"><div class="admin-card-head"><div><h3>Developer application</h3><div class="meta">'+esc(a.email||"No email")+' · '+esc(a.role||"Applicant")+'</div></div><span class="admin-status '+esc(a.status)+'">'+esc(a.status)+'</span></div><p>'+esc(a.description||a.needs||"No skills/details provided.")+'</p><div class="admin-card-actions">'+(a.status!=="approved"?'<button type="button" class="approve" data-action="application_status" data-id="'+esc(a.id)+'" data-status="approved">✓ Approve</button>':"")+(a.status!=="rejected"?'<button type="button" class="reject" data-action="application_status" data-id="'+esc(a.id)+'" data-status="rejected">✕ Reject</button>':"")+'</div></article>';
+  const feedbackCard=f=>'<article class="admin-card"><div class="admin-card-head"><div><h3>Tester report</h3><div class="meta">Game '+esc((f.game_id||"").slice(0,8))+' · Tester '+esc((f.tester_id||"").slice(0,8))+'</div></div><span class="admin-status approved">'+esc(f.rating||0)+'/5</span></div><p>'+esc(f.feedback||"No written feedback.")+'</p>'+(f.bug_report?'<p><b>Bug detected:</b> '+esc(f.bug_report)+'</p>':"")+'</article>';
+  function list(){
+    const list=$("#adminList"),q=(query||"").toLowerCase();
+    let arr=tab==="dashboard"?games.slice(0,12):tab==="pending"?games.filter(g=>g.status==="pending"):tab==="approved"?games.filter(g=>g.status==="approved"):tab==="rejected"?games.filter(g=>g.status==="rejected"):tab==="apps"?apps:tab==="feedback"?feedback:[];
+    arr=arr.filter(x=>!q||JSON.stringify(x).toLowerCase().includes(q));
+    list.innerHTML=arr.length?arr.map(x=>tab==="apps"?appCard(x):tab==="feedback"?feedbackCard(x):gameCard(x)).join(""):'<div class="admin-empty">No records match this view.<br><span style="font-size:11px;opacity:.7">Try another command tab or search term.</span></div>';
+    list.querySelectorAll("[data-action]").forEach(b=>b.onclick=async()=>{b.disabled=true;try{renderAdmin(await adminRequest({action:b.dataset.action,id:b.dataset.id,status:b.dataset.status},adminCode))}catch(e){alert(e.message);b.disabled=false}});
+  }
+  function draw(){
+    const pending=games.filter(g=>g.status==="pending").length,approved=games.filter(g=>g.status==="approved").length,rejected=games.filter(g=>g.status==="rejected").length,appsPending=apps.filter(a=>a.status==="pending").length;
+    body.innerHTML='<div class="admin-shell"><div class="admin-top"><div class="admin-brand"><div class="admin-logo">🛡️</div><div><div class="admin-title">GAME HEVLEN — NATIONAL OPERATIONS CENTER</div><div class="admin-sub">PRIVATE PLATFORM OPERATIONS · ADMINISTRATIVE USE ONLY</div></div></div><div class="admin-refresh"><button id="adminRefresh" class="secondary">↻ Sync</button><button id="adminExit" class="secondary">Exit</button></div></div><div class="admin-body"><div class="command-banner"><div><div class="live">System online</div><strong>Command Center is monitoring Game Hevlen.</strong><span>Approve builds, manage developer access, and review tester intelligence from one control deck.</span></div><div class="system-readout">CORE // ONLINE<br>AUTH // VERIFIED<br>FEED // LIVE</div></div><div class="admin-toolbar"><div><h2>National Operations Briefing</h2><p>Official administrative dashboard · review, approvals, testing, and platform oversight.</p></div><input id="adminSearch" class="admin-search" placeholder="⌕ Search games, developers, reports…"></div><div class="admin-kpis"><div class="admin-kpi"><strong>'+games.length+'</strong><span>Total games</span></div><div class="admin-kpi"><strong>'+pending+'</strong><span>Awaiting review</span></div><div class="admin-kpi"><strong>'+approved+'</strong><span>Live / approved</span></div><div class="admin-kpi"><strong>'+appsPending+'</strong><span>Developer requests</span></div></div><div class="admin-nav"><button data-tab="dashboard">◈ Overview</button><button data-tab="pending">⚡ Pending ('+pending+')</button><button data-tab="approved">✓ Approved ('+approved+')</button><button data-tab="rejected">✕ Rejected ('+rejected+')</button><button data-tab="apps">◆ Developers ('+appsPending+')</button><button data-tab="feedback">◉ Reports ('+feedback.length+')</button></div><div id="adminList" class="admin-grid"></div></div></div>';
+    document.querySelectorAll(".admin-nav button").forEach(b=>{b.onclick=()=>{tab=b.dataset.tab;document.querySelectorAll(".admin-nav button").forEach(x=>x.classList.remove("active"));b.classList.add("active");list()}});
+    $("#adminRefresh").onclick=async()=>{try{renderAdmin(await adminRequest({action:"list"},adminCode))}catch(e){alert(e.message)}};
+    $("#adminExit").onclick=()=>closeModal("adminModal");
+    $("#adminSearch").oninput=e=>{query=e.target.value;list()};
+    document.querySelector('.admin-nav button[data-tab="dashboard"]').classList.add("active");
+    list();
+  }
+  draw();
+}
+
+
+const PRACTICE_KEY="game_hevlen_practice_3d_v1";
+let practiceAnim=0,practiceMode="edit",practiceTool="select",practiceGrid=true,practiceHistory=[],practiceFuture=[],practiceSelected=null,practiceDragging=null,practiceState={keys:{},score:0};
+let practice3D={renderer:null,scene:null,camera:null,raycaster:null,ground:null,objects:new Map(),selected:null,drag:false,lastX:0,lastY:0,yaw:.7,pitch:.55,distance:18,target:new THREE.Vector3(0,0,0),grid:null,ambient:null,sun:null,player:null};
+
+const defaultScene3D=[
+ {id:"floor",type:"plane",name:"Ground",x:0,y:0,z:0,sx:12,sy:.2,sz:12,rx:-Math.PI/2,ry:0,rz:0,color:"#8997a8",static:true},
+ {id:"player",type:"player",name:"Player",x:0,y:0.65,z:0,sx:1,sy:1.3,sz:1,color:"#5f82c7",speed:4},
+ {id:"cube1",type:"cube",name:"Cube",x:3,y:.5,z:-2,sx:1,sy:1,sz:1,color:"#b8c0c9"},
+ {id:"coin1",type:"coin",name:"Coin",x:-2,y:1,z:-1,sx:.55,sy:.55,sz:.55,color:"#d9a83d"}
+];
+
+function practiceProjects3D(){try{return JSON.parse(localStorage.getItem(PRACTICE_KEY)||"[]")}catch{return []}}
+function practiceSceneData(){return [...practice3D.objects.values()].map(o=>({
+ id:o.userData.id,type:o.userData.type,name:o.userData.name,
+ x:o.position.x,y:o.position.y,z:o.position.z,
+ sx:o.scale.x,sy:o.scale.y,sz:o.scale.z,
+ rx:o.rotation.x,ry:o.rotation.y,rz:o.rotation.z,
+ color:o.userData.color||"#9aa4b0",speed:o.userData.speed||0,static:!!o.userData.static
+}))}
+function practiceSnapshot(){return JSON.stringify({name:$("#pName")?.value||"My First 3D Game",bg:$("#worldBg")?.value||"#8997a8",grid:Number($("#gridSize")?.value||1),scene:practiceSceneData()})}
+function practiceCommit(){practiceHistory.push(practiceSnapshot());if(practiceHistory.length>40)practiceHistory.shift();practiceFuture=[]}
+function practiceRestore(snap){const x=JSON.parse(snap);$("#pName").value=x.name||"My First 3D Game";$("#worldBg").value=x.bg||"#8997a8";$("#gridSize").value=x.grid||1;practiceBuildFromData(x.scene||defaultScene3D);practiceStudioMsg("Restored previous 3D scene.");}
+function practiceLog(t){const el=$("#consoleLog");if(el){const time=new Date().toLocaleTimeString();el.textContent+="\n["+time+"] "+t;el.scrollTop=el.scrollHeight}}
+function practiceStudioMsg(t,ok=false){const m=$("#studioMsg");if(m){m.textContent=t;m.style.color=ok?"#9bd5aa":"#a1a7af"}practiceLog(t)}
+function practiceMakeMaterial(color){return new THREE.MeshStandardMaterial({color:new THREE.Color(color||"#9aa4b0"),roughness:.72,metalness:.08})}
+function practiceGeometry(type){
+ if(type==="sphere"||type==="coin")return new THREE.SphereGeometry(.55,32,20);
+ if(type==="cylinder")return new THREE.CylinderGeometry(.55,.55,1,32);
+ if(type==="player"||type==="enemy")return new THREE.CapsuleGeometry(.45,1,8,16);
+ if(type==="plane")return new THREE.BoxGeometry(1,.15,1);
+ return new THREE.BoxGeometry(1,1,1);
+}
+function practiceCreateObject(d){
+ const geom=practiceGeometry(d.type),mat=practiceMakeMaterial(d.color),m=new THREE.Mesh(geom,mat);
+ m.userData={id:d.id||("o_"+Date.now()+"_"+Math.random().toString(36).slice(2,7)),type:d.type||"cube",name:d.name||"Cube",color:d.color||"#9aa4b0",speed:d.speed||0,static:!!d.static};
+ m.position.set(Number(d.x)||0,Number(d.y)||0,Number(d.z)||0);m.scale.set(Number(d.sx)||1,Number(d.sy)||1,Number(d.sz)||1);m.rotation.set(Number(d.rx)||0,Number(d.ry)||0,Number(d.rz)||0);
+ if(m.userData.type==="coin"){m.rotation.x=Math.PI/2;m.material.metalness=.5;m.material.roughness=.25}
+ if(m.userData.type==="light"){m.geometry.dispose();m.geometry=new THREE.SphereGeometry(.25,16,12);m.material=practiceMakeMaterial("#fff0a8")}
+ if(m.userData.type==="plane"){m.material.roughness=1}
+ m.castShadow=m.userData.type!=="plane";m.receiveShadow=true;
+ return m;
+}
+function practiceInit3D(){
+ if(practice3D.renderer)return;
+ const c=$("#practiceCanvas");
+ practice3D.renderer=new THREE.WebGLRenderer({canvas:c,antialias:true,preserveDrawingBuffer:true});
+ practice3D.renderer.setPixelRatio(Math.min(devicePixelRatio||1,2));practice3D.renderer.shadowMap.enabled=true;practice3D.renderer.outputColorSpace=THREE.SRGBColorSpace;
+ practice3D.scene=new THREE.Scene();practice3D.scene.background=new THREE.Color($("#worldBg").value||"#8997a8");
+ practice3D.camera=new THREE.PerspectiveCamera(55,1,.1,500);practice3D.raycaster=new THREE.Raycaster();
+ practice3D.ambient=new THREE.HemisphereLight(0xffffff,0x536070,.8);practice3D.scene.add(practice3D.ambient);
+ practice3D.sun=new THREE.DirectionalLight(0xffffff,1.4);practice3D.sun.position.set(8,14,8);practice3D.sun.castShadow=true;practice3D.sun.shadow.mapSize.set(1024,1024);practice3D.scene.add(practice3D.sun);
+ practice3D.grid=new THREE.GridHelper(30,30,0x5d6877,0x68717d);practice3D.grid.material.opacity=.35;practice3D.grid.material.transparent=true;practice3D.scene.add(practice3D.grid);
+ practice3D.ground=new THREE.Mesh(new THREE.PlaneGeometry(200,200),new THREE.MeshBasicMaterial({visible:false,side:THREE.DoubleSide}));practice3D.ground.rotation.x=-Math.PI/2;practice3D.scene.add(practice3D.ground);
+ practiceSetCamera();
+ c.addEventListener("pointerdown",practiceViewportDown);c.addEventListener("pointermove",practiceViewportMove);c.addEventListener("pointerup",practiceViewportUp);c.addEventListener("pointerleave",practiceViewportUp);c.addEventListener("wheel",practiceViewportWheel,{passive:false});
+ practiceResize3D();new ResizeObserver(practiceResize3D).observe(c.parentElement);
+}
+function practiceResize3D(){const c=$("#practiceCanvas"),r=c.parentElement.getBoundingClientRect();if(!r.width||!r.height)return;practice3D.renderer.setSize(r.width,r.height,false);practice3D.camera.aspect=r.width/r.height;practice3D.camera.updateProjectionMatrix();practiceRender3D()}
+function practiceSetCamera(){
+ const c=practice3D.camera;if(!c)return;
+ const cp=Math.cos(practice3D.pitch),sp=Math.sin(practice3D.pitch),cy=Math.cos(practice3D.yaw),sy=Math.sin(practice3D.yaw);
+ c.position.set(practice3D.target.x+practice3D.distance*cp*sy,practice3D.target.y+practice3D.distance*sp,practice3D.target.z+practice3D.distance*cp*cy);c.lookAt(practice3D.target);
+}
+function practiceRender3D(){if(!practice3D.renderer)return;practiceSetCamera();practice3D.renderer.render(practice3D.scene,practice3D.camera)}
+function practiceBuildFromData(data){
+ practiceInit3D();
+ practice3D.objects.forEach(o=>{practice3D.scene.remove(o);o.geometry?.dispose();o.material?.dispose()});practice3D.objects.clear();practiceSelected=null;
+ (data||[]).forEach(d=>{const o=practiceCreateObject(d);practice3D.objects.set(o.userData.id,o);practice3D.scene.add(o)});
+ practiceRender();practiceRender3D();
+}
+function practiceAdd(type){
+ practiceCommit();
+ const n=[...practice3D.objects.values()].filter(o=>o.userData.type===type).length+1;
+ const names={cube:"Cube",sphere:"Sphere",cylinder:"Cylinder",plane:"Plane",player:"Player",enemy:"Enemy",coin:"Coin",light:"Light"};
+ const colors={cube:"#aab3bd",sphere:"#7287a5",cylinder:"#9b7b63",plane:"#7f8b98",player:"#5f82c7",enemy:"#b65c63",coin:"#d9a83d",light:"#f1d98b"};
+ let d={id:"o_"+Date.now()+"_"+Math.random().toString(36).slice(2,7),type,name:(names[type]||"Object")+(n>1?" "+n:""),x:0,y:type==="plane"?0.08:.55,z:0,sx:1,sy:1,sz:1,rx:0,ry:0,rz:0,color:colors[type]||"#9aa4b0",speed:type==="enemy"?2.2:4,static:type==="plane"};
+ if(type==="plane"){d.sx=5;d.sy=.15;d.sz=5} if(type==="light"){d.x=2;d.y=4;d.z=2}
+ const o=practiceCreateObject(d);practice3D.objects.set(o.userData.id,o);practice3D.scene.add(o);practiceSelect(o);practiceRender();practiceStudioMsg("Created "+o.userData.name+".",true);
+}
+function practiceDelete(){const o=practice3D.selected;if(!o)return;practiceCommit();practice3D.scene.remove(o);practice3D.objects.delete(o.userData.id);o.geometry?.dispose();o.material?.dispose();practice3D.selected=null;practiceSelected=null;practiceRender();practiceStudioMsg("Object deleted.")}
+function practiceSelect(o){practice3D.selected=o||null;practiceSelected=o?.userData.id||null;practiceRender()}
+function practicePick(e){const c=$("#practiceCanvas"),r=c.getBoundingClientRect(),mouse=new THREE.Vector2(((e.clientX-r.left)/r.width)*2-1,-((e.clientY-r.top)/r.height)*2+1);practice3D.raycaster.setFromCamera(mouse,practice3D.camera);const hits=practice3D.raycaster.intersectObjects([...practice3D.objects.values()],false);return hits[0]?.object||null}
+function practiceViewportDown(e){
+ if(practiceMode==="play")return;
+ practice3D.lastX=e.clientX;practice3D.lastY=e.clientY;
+ if(e.button===0){const o=practicePick(e);if(o){practiceSelect(o);practice3D.drag=true;practice3D.dragStart=practiceSnapshot();}else practiceSelect(null)}
+ else if(e.button===2)practice3D.drag=true;
+ $("#practiceCanvas").setPointerCapture?.(e.pointerId);e.preventDefault();
+}
+function practiceViewportMove(e){
+ if(!practice3D.drag||practiceMode==="play")return;const dx=e.clientX-practice3D.lastX,dy=e.clientY-practice3D.lastY;practice3D.lastX=e.clientX;practice3D.lastY=e.clientY;
+ if(practice3D.selected&&e.buttons===1&&practiceTool!=="select"){const o=practice3D.selected;
+  if(practiceTool==="rotate"){o.rotation.y+=dx*.01;o.rotation.x+=dy*.01}
+  else if(practiceTool==="scale"){const q=Math.max(.1,1-dy*.01);o.scale.multiplyScalar(q)}
+  else if(practiceTool==="move"){o.position.x+=dx*.025;o.position.z+=dy*.025}
+  practiceApplySelection(false);
+ }else if(e.buttons===4||e.buttons===2||(!practice3D.selected&&e.buttons===1)){practice3D.yaw-=dx*.008;practice3D.pitch=Math.max(-1.35,Math.min(1.35,practice3D.pitch+dy*.008))}
+ practiceRender3D();practiceRenderInspector(false);
+}
+function practiceViewportUp(){if(practice3D.drag&&practice3D.dragStart&&practice3D.selected&&practiceTool!=="select"){if(practice3D.dragStart!==practiceSnapshot())practiceHistory.push(practice3D.dragStart);practiceFuture=[]}practice3D.drag=false;practice3D.dragStart=null}
+function practiceViewportWheel(e){e.preventDefault();practice3D.distance=Math.max(3,Math.min(80,practice3D.distance*(1+e.deltaY*.001)));practiceRender3D()}
+function practiceRenderSceneTree(){
+ const el=$("#sceneTree");if(!el)return;const arr=[...practice3D.objects.values()];
+ el.innerHTML=arr.length?arr.map(o=>'<button type="button" class="'+(o===practice3D.selected?'active':'')+'" data-sid="'+esc(o.userData.id)+'">'+practiceIcon(o.userData.type)+' &nbsp; '+esc(o.userData.name)+'</button>').join(""):'<div class="gh3d-empty" style="padding:10px">Scene is empty.</div>';
+ el.querySelectorAll("[data-sid]").forEach(b=>b.onclick=()=>practiceSelect(practice3D.objects.get(b.dataset.sid)));
+}
+function practiceIcon(t){return ({cube:"■",sphere:"●",cylinder:"◉",plane:"▱",player:"♟",enemy:"◆",coin:"●",light:"☼"}[t]||"□")}
+function practiceRenderInspector(){
+ const el=$("#inspector"),o=practice3D.selected;$("#selectionLabel").textContent=o?o.userData.name:"No selection";if(!o){el.innerHTML='<div class="gh3d-empty">Select an object to edit its transform and material.</div>';return}
+ const p=o.position,r=o.rotation,s=o.scale;
+ el.innerHTML='<div class="gh3d-field"><label>Name</label><input id="iName" value="'+esc(o.userData.name)+'"></div>'+
+ '<div class="gh3d-field"><label>Position</label><div class="gh3d-transform">'+["x","y","z"].map(k=>'<div class="gh3d-mini"><label>'+k.toUpperCase()+'</label><input id="iP'+k+'" type="number" step=".05" value="'+p[k].toFixed(2)+'"></div>').join("")+'</div></div>'+
+ '<div class="gh3d-field"><label>Rotation °</label><div class="gh3d-transform">'+["x","y","z"].map(k=>'<div class="gh3d-mini"><label>'+k.toUpperCase()+'</label><input id="iR'+k+'" type="number" step="1" value="'+(THREE.MathUtils.radToDeg(r[k])).toFixed(1)+'"></div>').join("")+'</div></div>'+
+ '<div class="gh3d-field"><label>Scale</label><div class="gh3d-transform">'+["x","y","z"].map(k=>'<div class="gh3d-mini"><label>'+k.toUpperCase()+'</label><input id="iS'+k+'" type="number" min=".05" step=".05" value="'+s[k].toFixed(2)+'"></div>').join("")+'</div></div>'+
+ '<div class="gh3d-field"><label>Material color</label><input id="iColor" type="color" value="'+esc(o.userData.color||"#9aa4b0")+'"></div>'+
+ '<div class="gh3d-field"><label>Movement speed</label><input id="iSpeed" type="number" min="0" max="20" step=".1" value="'+(o.userData.speed||0)+'"></div>'+
+ '<button type="button" id="iApply" class="apply">Apply properties</button><button type="button" id="iDelete" class="danger">Delete Object</button>';
+ $("#iApply").onclick=()=>{practiceCommit();practiceApplySelection(true);practiceStudioMsg("Inspector changes applied.",true)};
+ $("#iDelete").onclick=practiceDelete;
+}
+function practiceApplySelection(reRender=true){
+ const o=practice3D.selected;if(!o)return;
+ o.userData.name=$("#iName")?.value||o.userData.name;o.userData.color=$("#iColor")?.value||o.userData.color;o.userData.speed=Math.max(0,Number($("#iSpeed")?.value)||0);
+ ["x","y","z"].forEach(k=>{const n=$("#iP"+k);if(n)o.position[k]=Number(n.value)||0});
+ ["x","y","z"].forEach(k=>{const n=$("#iR"+k);if(n)o.rotation[k]=THREE.MathUtils.degToRad(Number(n.value)||0)});
+ ["x","y","z"].forEach(k=>{const n=$("#iS"+k);if(n)o.scale[k]=Math.max(.05,Number(n.value)||1)});
+ if(o.material?.color)o.material.color.set(o.userData.color);
+ if(reRender)practiceRender();
+}
+function practiceRenderProjects(){
+ const el=$("#practiceProjects");if(!el)return;const all=practiceProjects3D();
+ el.innerHTML=all.length?all.map(p=>'<div class="gh3d-project"><div><b>'+esc(p.name)+'</b><small>'+new Date(p.savedAt).toLocaleString()+'</small></div><button type="button" data-pid="'+esc(p.id)+'">LOAD</button></div>').join(""):'<span class="gh3d-empty">No saved projects yet.</span>';
+ el.querySelectorAll("[data-pid]").forEach(b=>b.onclick=()=>{const p=all.find(x=>String(x.id)===b.dataset.pid);if(p)practiceLoad(p)});
+}
+function practiceSave(){
+ const project={id:Date.now(),name:$("#pName").value.trim()||"Untitled Game",bg:$("#worldBg").value,grid:Number($("#gridSize").value),scene:practiceSceneData(),savedAt:new Date().toISOString()};
+ let all=practiceProjects3D().filter(x=>x.name!==project.name);all.unshift(project);localStorage.setItem(PRACTICE_KEY,JSON.stringify(all.slice(0,30)));practiceRenderProjects();practiceStudioMsg("Saved 3D project to My Files.",true);
+}
+function practiceLoad(p){practiceCommit();$("#pName").value=p.name||"Untitled Game";$("#worldBg").value=p.bg||"#8997a8";$("#gridSize").value=p.grid||1;practiceBuildFromData(p.scene||defaultScene3D);practiceStudioMsg("Loaded "+p.name+".",true)}
+function practiceNew(){practiceCommit();$("#pName").value="My First 3D Game";$("#worldBg").value="#8997a8";$("#gridSize").value=1;practiceBuildFromData(defaultScene3D);practiceStudioMsg("New 3D scene created.",true)}
+function practiceRender(){
+ $("#studioTitle").textContent=$("#pName").value.trim()||"Untitled Game";$("#gridValue").textContent=Number($("#gridSize").value||1)+" m";$("#sceneCount").textContent=practice3D.objects.size+" object"+(practice3D.objects.size===1?"":"s");practiceRenderSceneTree();practiceRenderInspector();practiceRender3D();
+}
+function practicePlay(){
+ practiceMode=practiceMode==="play"?"edit":"play";$("#studioPlay").textContent=practiceMode==="play"?"■ Stop":"▶ Play";$("#playOverlay").classList.toggle("hidden",practiceMode!=="play");$("#studioStatus").textContent=practiceMode==="play"?"PLAY MODE · WASD / ARROWS":"EDIT MODE · LOCAL PROJECT";
+ const p=[...practice3D.objects.values()].find(o=>o.userData.type==="player");practice3D.player=p||null;practiceState.keys={};if(practiceMode==="play"&&!p){practiceStudioMsg("Add a Player before Play mode.");practiceMode="edit";$("#studioPlay").textContent="▶ Play";$("#playOverlay").classList.add("hidden");return}
+ practiceStudioMsg(practiceMode==="play"?"Playtest started.":"Playtest stopped.",true);if(practiceMode==="play"){practiceStart()}else{cancelAnimationFrame(practiceAnim);practiceRender()}
+}
+function practiceStart(){
+ cancelAnimationFrame(practiceAnim);const p=practice3D.player;let last=performance.now();
+ const loop=(now)=>{if(practiceMode!=="play")return;const dt=Math.min(.04,(now-last)/1000);last=now;const k=practiceState.keys,sp=(p.userData.speed||4)*dt;
+  if(k.w||k.ArrowUp)p.position.z-=sp;if(k.s||k.ArrowDown)p.position.z+=sp;if(k.a||k.ArrowLeft)p.position.x-=sp;if(k.d||k.ArrowRight)p.position.x+=sp;
+  practice3D.objects.forEach(o=>{if(o.userData.type==="enemy"){const dx=p.position.x-o.position.x,dz=p.position.z-o.position.z,dist=Math.hypot(dx,dz)||1;const q=(o.userData.speed||2)*dt;o.position.x+=dx/dist*q;o.position.z+=dz/dist*q}});
+  practiceRender3D();practiceAnim=requestAnimationFrame(loop)};practiceAnim=requestAnimationFrame(loop);
+}
+function practiceExport(){
+ const scene=practiceSceneData(),name=(($("#pName").value||"3d-practice-game").replace(/[^a-z0-9_-]+/gi,"-").toLowerCase())+".html",bg=$("#worldBg").value;
+ const payload=JSON.stringify(scene).replace(/</g,"\\u003c");
+ const html='<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc($("#pName").value||"Game")+'</title><style>html,body{margin:0;height:100%;overflow:hidden;background:#111}#g{width:100%;height:100%;display:block}#hud{position:fixed;left:14px;top:12px;padding:7px 10px;background:#111b;color:#fff;font:12px system-ui;border:1px solid #ffffff33;border-radius:6px}</style></head><body><div id="hud">'+esc($("#pName").value||"Game")+' · WASD to move</div><canvas id="g"></canvas><script src="https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.min.js"><\/script><script>const sceneData='+payload+',bg="'+bg+'";const c=document.getElementById("g"),r=new THREE.WebGLRenderer({canvas:c,antialias:true});r.setPixelRatio(Math.min(devicePixelRatio,2));r.shadowMap.enabled=true;const s=new THREE.Scene();s.background=new THREE.Color(bg);const cam=new THREE.PerspectiveCamera(55,1,.1,500);cam.position.set(10,9,10);const hemi=new THREE.HemisphereLight(0xffffff,0x55606e,0.9);s.add(hemi);const sun=new THREE.DirectionalLight(0xffffff,1.5);sun.position.set(8,14,8);sun.castShadow=true;s.add(sun);const k={};addEventListener("keydown",e=>k[e.key]=1);addEventListener("keyup",e=>k[e.key]=0);function geo(t){if(t==="sphere"||t==="coin")return new THREE.SphereGeometry(.55,24,16);if(t==="cylinder")return new THREE.CylinderGeometry(.55,.55,1,24);if(t==="player"||t==="enemy")return new THREE.CapsuleGeometry(.45,1,8,12);if(t==="plane")return new THREE.BoxGeometry(1,.15,1);return new THREE.BoxGeometry(1,1,1)}const ms=[];sceneData.forEach(d=>{const m=new THREE.Mesh(geo(d.type),new THREE.MeshStandardMaterial({color:d.color||"#9aa4b0",roughness:.7}));m.position.set(d.x,d.y,d.z);m.scale.set(d.sx,d.sy,d.sz);m.rotation.set(d.rx,d.ry,d.rz);m.castShadow=d.type!=="plane";m.receiveShadow=true;s.add(m);ms.push({d,m})});const p=ms.find(x=>x.d.type==="player");function size(){const w=innerWidth,h=innerHeight;r.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()}addEventListener("resize",size);size();function f(){if(p){const q=(p.d.speed||4)*.08;if(k.w||k.ArrowUp)p.m.position.z-=q;if(k.s||k.ArrowDown)p.m.position.z+=q;if(k.a||k.ArrowLeft)p.m.position.x-=q;if(k.d||k.ArrowRight)p.m.position.x+=q;cam.lookAt(p.m.position)}else cam.lookAt(0,0,0);r.render(s,cam);requestAnimationFrame(f)}f();<\/script></body></html>';
+ const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([html],{type:"text/html"}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);practiceStudioMsg("Exported "+name+".",true);
+}
+function practiceOpen(){
+ $("#practiceModal").classList.add("open");practiceMode="edit";$("#studioStatus").textContent="EDIT MODE · LOCAL PROJECT";$("#studioPlay").textContent="▶ Play";$("#playOverlay").classList.add("hidden");
+ practiceInit3D();practiceRenderProjects();if(practice3D.objects.size===0)practiceBuildFromData(defaultScene3D);practiceRender();practiceStudioMsg("3D studio ready.",true);
+}
+function practiceUndo(){if(!practiceHistory.length)return;practiceFuture.push(practiceSnapshot());practiceRestore(practiceHistory.pop());practiceStudioMsg("Undo")}
+function practiceRedo(){if(!practiceFuture.length)return;practiceHistory.push(practiceSnapshot());practiceRestore(practiceFuture.pop());practiceStudioMsg("Redo")}
+function practiceFocus(){if(practice3D.selected){practice3D.target.copy(practice3D.selected.position);practice3D.distance=Math.max(5,practice3D.selected.position.length()+8)}else{practice3D.target.set(0,0,0);practice3D.distance=18}practiceRender3D()}
+function practiceResetView(){practice3D.yaw=.7;practice3D.pitch=.55;practice3D.distance=18;practice3D.target.set(0,0,0);practiceRender3D()}
+function practiceBind3D(){
+ $("#studioSave").onclick=practiceSave;$("#studioExport").onclick=practiceExport;$("#studioPlay").onclick=practicePlay;$("#studioNew").onclick=practiceNew;$("#studioUndo").onclick=practiceUndo;$("#studioRedo").onclick=practiceRedo;$("#studioGrid").onclick=()=>{practiceGrid=!practiceGrid;if(practice3D.grid)practice3D.grid.visible=practiceGrid};
+ $("#studioResetView").onclick=practiceResetView;$("#studioFocus").onclick=practiceFocus;$("#consoleClear").onclick=()=>{$("#consoleLog").textContent="[Game Hevlen] Console cleared."};
+ $("#pName").oninput=()=>{$("#studioTitle").textContent=$("#pName").value||"Untitled Game"};$("#worldBg").oninput=()=>{practice3D.scene.background.set($("#worldBg").value);practiceRender3D()};$("#gridSize").oninput=()=>{$("#gridValue").textContent=$("#gridSize").value+" m";if(practice3D.grid){practice3D.grid.scale.setScalar(Number($("#gridSize").value)||1)}};
+ $("#ambientLevel").oninput=()=>{if(practice3D.ambient)practice3D.ambient.intensity=Number($("#ambientLevel").value)};$("#sunLevel").oninput=()=>{if(practice3D.sun)practice3D.sun.intensity=Number($("#sunLevel").value)};
+ $("#cameraMode").onchange=()=>{const m=$("#cameraMode").value;if(m==="top"){practice3D.yaw=0;practice3D.pitch=1.5}else if(m==="front"){practice3D.yaw=0;practice3D.pitch=.15}else if(m==="side"){practice3D.yaw=Math.PI/2;practice3D.pitch=.15}else{practice3D.yaw=.7;practice3D.pitch=.55}practiceRender3D()};
+ document.querySelectorAll("[data-add]").forEach(b=>b.onclick=()=>practiceAdd(b.dataset.add));
+ document.querySelectorAll(".gh3d-tool").forEach(b=>b.onclick=()=>{practiceTool=b.dataset.tool;document.querySelectorAll(".gh3d-tool").forEach(x=>x.classList.remove("active"));b.classList.add("active");practiceStudioMsg(practiceTool.toUpperCase()+" tool selected.")});
+ window.addEventListener("keydown",e=>{if(!$("#practiceModal").classList.contains("open"))return;practiceState.keys[e.key]=true;if(e.key==="Escape"&&practiceMode==="play")practicePlay();if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="s"){e.preventDefault();practiceSave()}});
+ window.addEventListener("keyup",e=>{practiceState.keys[e.key]=false});
+ $("#practiceCanvas").addEventListener("contextmenu",e=>e.preventDefault());
+}
+practiceBind3D();
+
+
+
+$("#signupBtn").onclick=signupForm;$("#loginBtn").onclick=()=>session?loadTesterGames():loginForm;$("#submitGameBtn").onclick=()=>{try{gameForm()}catch{loginForm()}};$("#testerBtn").onclick=loadTesterGames;$("#devBtn").onclick=developerForm;$("#logoutBtn").onclick=signOut;document.querySelectorAll("[data-close]").forEach(b=>b.onclick=()=>closeModal(b.dataset.close));$("#mainModal").onclick=e=>{if(e.target.id==="mainModal")closeModal("mainModal")};$("#adminBtn").onclick=()=>{$("#adminModal").classList.add("open");adminGate()};
+$("#mainForm").onsubmit=async e=>{e.preventDefault();if(busy)return;busy=true;message("Working…");try{if(modalMode==="signup"){const ok=await signUp($("#fName").value.trim(),$("#fEmail").value.trim(),$("#fPass").value);if(ok){message("Account created and signed in.","success");setTimeout(()=>closeModal("mainModal"),700)}else message("Account created. You can sign in now.","success")}else if(modalMode==="login"){await signIn($("#fEmail").value.trim(),$("#fPass").value);message("Signed in successfully.","success");setTimeout(()=>closeModal("mainModal"),500)}else if(modalMode==="game"){const title=$("#gTitle").value.trim(),desc=$("#gDesc").value.trim(),genre=$("#gGenre").value.trim(),file=$("#gFile").files[0];if(!file)throw new Error("Choose a game file first.");if(file.size>50*1024*1024)throw new Error("Game files must be 50 MB or smaller.");const safeName=file.name.replace(/[^a-zA-Z0-9._-]/g,"_");const objectPath=user.id+"/"+Date.now()+"_"+safeName;const upload=await request(API+"/storage/v1/object/game-builds/"+objectPath.split("/").map(encodeURIComponent).join("/"),{method:"POST",headers:{"apikey":KEY,"Authorization":"Bearer "+session.access_token,"Content-Type":file.type||"application/octet-stream","x-upsert":"false"},body:file},120000);const fileUrl=API+"/storage/v1/object/public/game-builds/"+objectPath;await db("games",{method:"POST",body:JSON.stringify({creator_id:user.id,title,description:desc,genre,build_url:fileUrl,status:"pending"})});message("Game submitted. Staff can now review it.","success");e.target.reset()}else if(modalMode==="developer"){await request(DEV_FN,{method:"POST",headers:{"Content-Type":"application/json","apikey":KEY},body:JSON.stringify({email:$("#dEmail").value.trim(),skills:$("#dSkills").value.trim()})});message("Application sent to the staff review queue.","success");e.target.reset()}else if(modalMode==="tester-login"){closeModal("mainModal");loginForm()}}catch(err){message(err.message||"Something went wrong.","error")}finally{busy=false}};
+(function boot(){try{const raw=localStorage.getItem(SESSION_KEY);if(raw){const s=JSON.parse(raw);if(s?.access_token){session=s;user=s.user||null}}}catch{}renderSession()})();
+</script>
+</body>
+</html>
